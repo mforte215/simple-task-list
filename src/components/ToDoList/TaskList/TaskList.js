@@ -1,7 +1,7 @@
 import React from 'react';
 import Todo from '../todo/Todo';
 
-const taskList = (props) => {
+const taskList = React.memo(props => {
 
     let transformedTasks = Object.keys(props.tasks).map(keyIndex => {
         return [...Array(props.tasks[keyIndex])].map((v, i) => {
@@ -15,6 +15,6 @@ const taskList = (props) => {
             {transformedTasks}
         </div>
     );
-}
+});
 
 export default taskList;

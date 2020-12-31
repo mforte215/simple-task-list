@@ -11,49 +11,65 @@ class ToDoList extends Component {
     }
 
     addTask = () => {
-        
 
-        let total = this.state.taskIDTotal;
+        console.log('Outputting new task.')
+        
+        if (this.state.newTaskInput === '') {
+
+        }
+        else {
+        console.log('taskIDTotal: ' + this.state.taskIDTotal);
         const newTask = {
             taskText: this.state.newTaskInput,
-            taskID: total 
+            taskID: (this.state.taskIDTotal + 1), 
         }
 
-        total = total + 1;
+        
         
 
         let newTaskList = [...this.state.taskList];
         newTaskList.push(newTask);
         this.setState(
             {
-                taskList: newTaskList
+                taskList: newTaskList,
+                taskIDTotal: (this.state.taskIDTotal + 1), 
             }
-        );
-        
-    };
+        );  
+    }  
+    
+}
 
     removeTask = (taskID) => {
+        console.log('Deleting Task');
         let removeIndex = null;
         let copyOfTaskArray = [...this.state.taskList];
-        console.log('Logging Task ID:' + taskID);
-        let taskToDelete = copyOfTaskArray.find((task, index) => {
-            console.log(task);
-            if(task.id === taskID) {
-                removeIndex = index;
+        let correctedID = parseInt(taskID) + 1;
+
+        let foundIndex = copyOfTaskArray.findIndex((taskElement) => {
+            return taskElement.taskID === correctedID;
+        });
+        
+       /* let taskToDelete = copyOfTaskArray.find((task, index) => {
+            console.log('----------------------------------');
+            
+            console.log('Corrected ID Passed from ToDo Component: ' + correctedID);
+            console.log('Comparison ID from array:' + task.taskID);
+            console.log('Do they equal: ' + (correctedID === parseInt(task.taskID)));
+            console.log('----------------------------------');
+            if(task.taskID === correctedID) {
+                console.log('got in the boolean statement');
+               
                 return true;
             }
             else {
                 return false;
-            }
-        });
+            } */
 
-        copyOfTaskArray.splice(removeIndex, 1);
+            copyOfTaskArray.splice(foundIndex, 1);
 
-        this.setState({
-            taskList: copyOfTaskArray
-        });
-
-        
+            this.setState({
+                taskList: copyOfTaskArray
+            });
 
     }
 
@@ -63,7 +79,7 @@ class ToDoList extends Component {
                 newTaskInput: event.target.value
             }
         )
-        console.log('Current Message: ' + event.target.value);
+
 
     }
     
