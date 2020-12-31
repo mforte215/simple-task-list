@@ -1,5 +1,26 @@
 .Todo {
     height: 60;
-    width: 70%;
+    border-bottom: 2px solid grey;
+    padding-top: 2%;
+    display: flex;
+    
+}
+
+.Todo p {
+
+    width: 80%;
     margin: auto;
+    
+    
+}
+
+.Todo button {
+    margin: 2%;
+    background-color: red;
+    color: black;
+    padding: 2%;
+    border: none;
+    border-radius: 20%;
+    font-weight: bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
