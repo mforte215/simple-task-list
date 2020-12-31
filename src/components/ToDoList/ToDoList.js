@@ -41,29 +41,13 @@ class ToDoList extends Component {
 
     removeTask = (taskID) => {
         console.log('Deleting Task');
-        let removeIndex = null;
         let copyOfTaskArray = [...this.state.taskList];
-        let correctedID = parseInt(taskID) + 1;
+        /*let correctedID = parseInt(taskID) + 1; */
+        let foundIndex = null;
 
-        let foundIndex = copyOfTaskArray.findIndex((taskElement) => {
-            return taskElement.taskID === correctedID;
+            foundIndex = copyOfTaskArray.findIndex((taskElement) => {
+            return taskElement.taskID === taskID;
         });
-        
-       /* let taskToDelete = copyOfTaskArray.find((task, index) => {
-            console.log('----------------------------------');
-            
-            console.log('Corrected ID Passed from ToDo Component: ' + correctedID);
-            console.log('Comparison ID from array:' + task.taskID);
-            console.log('Do they equal: ' + (correctedID === parseInt(task.taskID)));
-            console.log('----------------------------------');
-            if(task.taskID === correctedID) {
-                console.log('got in the boolean statement');
-               
-                return true;
-            }
-            else {
-                return false;
-            } */
 
             copyOfTaskArray.splice(foundIndex, 1);
 
